@@ -3,14 +3,18 @@
     <title>Multiplayer Game</title>
     <style>
         canvas {
-            width: 800px;
-            height: 600px;
+            width: 1200px;
+            height: 900px;
             border: 5px solid black;
         }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
+<form action="/action_page.php">
+    Nickname: <input type="text" name="FirstName" value=""><br>
+    <input type="submit" value="Submit">
+</form>
 <canvas id="canvas"></canvas>
 </body>
 <script src="/static/game.js"></script>

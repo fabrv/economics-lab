@@ -48,3 +48,30 @@ io.on('connection', function(socket) {
 setInterval(function() {
   io.sockets.emit('state', players);
 }, 1000 / 60);
+
+
+// Insert username & password into 'user'
+function insertUser(user, pass) {
+  return knex('user').insert({
+    username: user,
+  }).then(function() {
+    rl.prompt();
+  });
+}
+
+// Create new user
+function createNewUser() {
+  rl.question('Username ›› ', function(username) {
+      insertUser(username, password);
+      rl.prompt();
+    });
+}
+
+// Ask if user is new
+rl.question('Are you a new user? ', function(answer) {
+  if (answer.match(/^y(es)?$/i)) {
+    createNewUser();
+  } else {
+    rl.prompt();
+  }
+});
