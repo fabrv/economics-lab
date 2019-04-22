@@ -44,14 +44,10 @@
                identifier: k
            };
        }
-    console.log(sharess);
+
         shares=sharess;
     }
-    createShares(12);
 
-
-    shareSort(shares);
-    console.log(companyA);
 
 //organiza las acciones, no se por que pero quedan 20 espacios vacios, total este es el mvp
     function shareSort(sharesToSort){
@@ -151,9 +147,46 @@
 
     }
 
-    /*createShares(1);
-    shareSort(shares);
-    console.log('FIRST FUNCTION RUN');*/
+    function getShareOwner(shareArray){
+        var owner=0;
+        owner=ShareArray[0].owner
+    }
 
+    function sell1(offer, player, companyA) {
+        if(countOccupiedSpaces(player.shares)<offer){
+            console.log("you don't have any shares available");
+        }else if(countOccupiedSpaces(player.shares) > offer){
+            var money=0;
+            var parallel=[];
+            //V+E
+            do{
+                for(var j=0; j<player.shares.length; j++){
+                    if(player.shares[j].owner===1){
+
+                        money+=player.shares[j].price;
+                        parallel.push(player.shares[j]);
+                        player.shares[j]=0;
+                        companyA.push(parallel.pop());
+                        --offer;
+                    }
+
+                }
+            }while(offer!==0);
+
+            var filtered = player.shares.filter(function (el) {
+                return el !== 0;
+            });
+            player.shares=filtered;
+
+        }
+        
+    }
+
+    createShares(1);
+    shareSort(shares);
+    buy(10, player2,companyA);
+    buy(3,player2,companyB);
+    console.log(player2);
+    sell1(3,player2,companyA);
 
 
