@@ -21,34 +21,29 @@ server.listen(5000, function() {
   console.log('Starting server on port 5000');
 });
 
-var players = {};
-io.sockets.on('connect', function(socket) {
-  var sessionid = socket.id;
-});
-
-
-// Insert username & password into 'user'
-function insertUser(user, pass) {
-  return knex('user').insert({
-    username: user,
-  }).then(function() {
-    rl.prompt();
+/**
+ * Server side input handler, modifies the state of the players and the
+ * game based on the input it receives. Everything here runs asynchronously.
+ */
+io.on('connection', (socket) => {
+  socket.on('player-join', () => {
+    game.addNewPlayer(socket);
   });
-}
 
-// Create new user
-function createNewUser() {
-  rl.question('Username ›› ', function(username) {
-      insertUser(username, password);
-      rl.prompt();
-    });
-}
+  socket.on('player-action', (data) => {
+    game.updatePlayerOnInput(socket.id, data);
+  });
 
-// Ask if user is new
-rl.question('Are you a new user? ', function(answer) {
-  if (answer.match(/^y(es)?$/i)) {
-    createNewUser();
-  } else {
-    rl.prompt();
-  }
+  socket.on('disconnect', () => {
+    game.removePlayer(socket.id);
+  })
 });
+
+/**
+ * Server side game loop. This runs at 60 frames per second.
+ */
+setInterval(() => {
+  game.update();
+  game.sendState();
+}, 1000 / FPS);
+

@@ -9,38 +9,27 @@ var input1 = new CanvasInput({
     canvas: document.getElementById('accionesempresaB')
 });
 
+var verseChoose = document.querySelector('select');
+var poemDisplay = document.querySelector('pre');
 
+verseChoose.onchange = function() {
+    var verse = verseChoose.value;
+    updateDisplay(verse);
+};
 
+function updateDisplay(verse) {
+    verse = verse.replace(" ", "");
+    verse = verse.toLowerCase();
+    var url = verse + '.txt';
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.responseType = 'text';
+};
 
-// Server side input handler, modifies the state of the players and the
-// game based on the input it receives. Everything runs asynchronously with
-// the game loop.
-io.on('connection', function(socket) {
-    // When a new player joins, the server adds a new player to the game.
-    socket.on('new-player', function(data, callback) {
-        game.addNewPlayer(data.name, socket);
-        io.sockets.emit('chat-server-to-clients', {
-            name: '[Tank Anarchy]',
-            message: data.name + ' has joined the game.',
-            isNotification: true
-        });
-        callback();
-        socket.emit('chat-server-to-clients', {
-            name: '[Tank Anarchy]',
-            message: 'Welcome, ' + data.name + '! Use WASD to move and click ' +
-                'to shoot. Pick up powerups to boost your tank temporarily!',
-            isNotification: true
-        });
-    });
-});
+request.onload = function() {
+    poemDisplay.textContent = request.response;
+};
 
-// When a player disconnects, remove them from the game.
-socket.on('disconnect', function() {
-    var name = game.removePlayer(socket.id);
-    io.sockets.emit('chat-server-to-clients', {
-        name: '[Tank Anarchy]',
-        message: name + ' has left the game.',
-        isNotification: true
-    });
-});
-
+request.send();
+updateDisplay('Verse 1');
+verseChoose.value = 'Verse 1';
