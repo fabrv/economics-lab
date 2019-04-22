@@ -16,35 +16,39 @@ app.get('/', function(request, response) {
   response.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Starts the server.
 server.listen(5000, function() {
   console.log('Starting server on port 5000');
 });
 
 var players = {};
-io.on('connection', function(socket) {
-  socket.on('new player', function() {
-    players[socket.id] = {
-      x: 300,
-      y: 300
-    };
-  });
-  socket.on('movement', function(data) {
-    var player = players[socket.id] || {};
-    if (data.left) {
-      player.x -= 5;
-    }
-    if (data.up) {
-      player.y -= 5;
-    }
-    if (data.right) {
-      player.x += 5;
-    }
-    if (data.down) {
-      player.y += 5;
-    }
-  });
+io.sockets.on('connect', function(socket) {
+  var sessionid = socket.id;
 });
 
-setInterval(function() {
-  io.sockets.emit('state', players);
-}, 1000 / 60);
+
+// Insert username & password into 'user'
+function insertUser(user, pass) {
+  return knex('user').insert({
+    username: user,
+  }).then(function() {
+    rl.prompt();
+  });
+}
+
+// Create new user
+function createNewUser() {
+  rl.question('Username ›› ', function(username) {
+      insertUser(username, password);
+      rl.prompt();
+    });
+}
+
+// Ask if user is new
+rl.question('Are you a new user? ', function(answer) {
+  if (answer.match(/^y(es)?$/i)) {
+    createNewUser();
+  } else {
+    rl.prompt();
+  }
+});

@@ -1,17 +1,139 @@
-<html>
+<html xmlns:A="http://www.w3.org/1999/xhtml">
 <head>
-    <title>A Multiplayer Game</title>
+    <title>Multiplayer Game</title>
     <style>
-        canvas {
-            width: 800px;
-            height: 600px;
-            border: 5px solid black;
+        #availableA {
+            position: absolute;
+            top: 125px;
+            left: 145px;
+            text-align: center;
+            width: 5%;
+
+        }
+        #availableB {
+            position: absolute;
+            top: 145px;
+            left: 145px;
+            text-align: center;
+            width: 5%;
+
+        }
+        #availableC {
+            position: absolute;
+            top: 165px;
+            left: 145px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #priceA {
+            position: absolute;
+            top: 125px;
+            left: 250px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #priceB {
+            position: absolute;
+            top: 145px;
+            left: 250px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #priceC {
+            position: absolute;
+            top: 165px;
+            left: 250px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #buyA {
+            position: absolute;
+            top: 225px;
+            left: 145px;
+            text-align: center;
+            width: 5%;
+
+        }
+        #buyB {
+            position: absolute;
+            top: 245px;
+            left: 145px;
+            text-align: center;
+            width: 5%;
+
+        }
+        #buyC {
+            position: absolute;
+            top: 265px;
+            left: 145px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #sellA {
+            position: absolute;
+            top: 225px;
+            left: 250px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #sellB {
+            position: absolute;
+            top: 245px;
+            left: 250px;
+            text-align: center;
+            width: 5%;
+
+        }
+
+        #sellC {
+            position: absolute;
+            top: 265px;
+            left: 250px;
+            text-align: center;
+            width: 5%;
+
         }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-<canvas id="canvas"></canvas>
+<form>
+    <h1>OFFER AND DEMAND</h1>
+    Nickname: <input type="text" name="FirstName" value="">
+    <input type="submit" value="Submit"><br><br>
+
+    Market<br>
+    <div style="position: absolute; top: 100px; left: 150px;">Available</div>
+    <div style="position: absolute; top: 100px; left: 270px;">Price</div>
+    Company A<input id="availableA" type="text" name="buyA"><br>
+    Company B<input id="availableB" type="text" name="buyB"><br>
+    Company C<input id="availableC" type="text" name="buyC"><br>
+    <input id="priceA" type="text" name="sellA"><br>
+    <input id="priceB" type="text" name="sellB"><br>
+    <input id="priceC" type="text" name="sellC"><br>
+
+    <div style="position: absolute; top: 200px; left: 165px;">Buy</div>
+    <div style="position: absolute; top: 200px; left: 270px;">Sell</div>
+
+    Company A<input id="buyA" type="text" name="buyA"><br>
+    Company B<input id="buyB" type="text" name="buyB"><br>
+    Company C<input id="buyC" type="text" name="buyC"><br>
+    <input id="sellA" type="text" name="sellA"><br>
+    <input id="sellB" type="text" name="sellB"><br>
+    <input id="sellC" type="text" name="sellC"><br>
+</form>
 </body>
 <script src="/static/game.js"></script>
 </html>
