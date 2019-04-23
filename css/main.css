@@ -1,0 +1,105 @@
+input {
+    position: absolute;
+    top: 125px;
+    left: 145px;
+    text-align: center;
+    width: 5%;
+    background-color: #3CBC8D;
+    color: white;
+
+}
+#availableB {
+    position: absolute;
+    top: 145px;
+    left: 145px;
+    text-align: center;
+    width: 5%;
+
+
+}
+#availableC {
+    position: absolute;
+    top: 165px;
+    left: 145px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#priceA {
+    position: absolute;
+    top: 125px;
+    left: 250px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#priceB {
+    position: absolute;
+    top: 145px;
+    left: 250px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#priceC {
+    position: absolute;
+    top: 165px;
+    left: 250px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#buyA {
+    position: absolute;
+    top: 225px;
+    left: 145px;
+    text-align: center;
+    width: 5%;
+
+}
+#buyB {
+    position: absolute;
+    top: 245px;
+    left: 145px;
+    text-align: center;
+    width: 5%;
+
+}
+#buyC {
+    position: absolute;
+    top: 265px;
+    left: 145px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#sellA {
+    position: absolute;
+    top: 225px;
+    left: 250px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#sellB {
+    position: absolute;
+    top: 245px;
+    left: 250px;
+    text-align: center;
+    width: 5%;
+
+}
+
+#sellC {
+    position: absolute;
+    top: 265px;
+    left: 250px;
+    text-align: center;
+    width: 5%;
+}

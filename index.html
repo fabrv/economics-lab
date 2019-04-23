@@ -1,139 +1,214 @@
 <html xmlns:A="http://www.w3.org/1999/xhtml">
 <head>
     <title>Multiplayer Game</title>
+    <link rel="stylesheet" href="css/main.css">
     <style>
+        h1{
+            font-family: "Courier New";
+            text-align: center;
+        }
+        body{
+            font-family: "Courier New";
+            width: 90%;
+            height: 90%;
+            border-width: thick;
+            box-sizing: border-box;
+            border-color: black;
+            border-style: inset;
+            text-align: left;
+        }
         #availableA {
             position: absolute;
             top: 125px;
-            left: 145px;
+            left: 625px;
             text-align: center;
             width: 5%;
+            background-color: #66ff33;
+            color: white;
+            font-family: "Courier New";
 
         }
         #availableB {
             position: absolute;
             top: 145px;
-            left: 145px;
+            left: 625px;
             text-align: center;
             width: 5%;
-
+            background-color: #66ff33;
+            color: white;
         }
         #availableC {
             position: absolute;
             top: 165px;
-            left: 145px;
+            left: 625px;
             text-align: center;
             width: 5%;
+            background-color: #66ff33;
+            color: white;
+            font-family: "Courier New";
+
 
         }
 
         #priceA {
             position: absolute;
             top: 125px;
-            left: 250px;
+            left: 730px;
             text-align: center;
             width: 5%;
+            background-color: #66ff33;
+            color: white;
+            font-family: "Courier New";
 
         }
 
         #priceB {
             position: absolute;
             top: 145px;
-            left: 250px;
+            left: 730px;
             text-align: center;
             width: 5%;
+            background-color: #66ff33;
+            color: white;
+            font-family: "Courier New";
 
         }
 
         #priceC {
             position: absolute;
             top: 165px;
-            left: 250px;
+            left: 730px;
             text-align: center;
             width: 5%;
+            background-color: #66ff33;
+            color: white;
+            font-family: "Courier New";
 
         }
 
         #buyA {
             position: absolute;
-            top: 225px;
-            left: 145px;
+            top: 350px;
+            left: 625px;
             text-align: center;
             width: 5%;
+            font-family: "Courier New";
+            background-color: #ff6600;
+            color: white;
 
         }
         #buyB {
             position: absolute;
-            top: 245px;
-            left: 145px;
+            top: 370px;
+            left: 625px;
             text-align: center;
             width: 5%;
-
+            font-family: "Courier New";
+            background-color: #ff6600;
+            color: white;
         }
         #buyC {
             position: absolute;
-            top: 265px;
-            left: 145px;
+            top: 390px;
+            left: 625px;
             text-align: center;
             width: 5%;
-
+            font-family: "Courier New";
+            background-color: #ff6600;
+            color: white;
         }
 
         #sellA {
             position: absolute;
-            top: 225px;
-            left: 250px;
+            top: 350px;
+            left: 730px;
             text-align: center;
             width: 5%;
-
+            font-family: "Courier New";
+            background-color: #ff6600;
+            color: white;
         }
 
         #sellB {
             position: absolute;
-            top: 245px;
-            left: 250px;
+            top: 370px;
+            left: 730px;
             text-align: center;
             width: 5%;
+            font-family: "Courier New";
+            background-color: #ff6600;
+            color: white;
 
         }
 
         #sellC {
             position: absolute;
-            top: 265px;
-            left: 250px;
+            top: 390px;
+            left: 730px;
             text-align: center;
             width: 5%;
-
+            font-family: "Courier New";
+            background-color: #ff6600;
+            color: white;
         }
     </style>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-<form>
     <h1>OFFER AND DEMAND</h1>
-    Nickname: <input type="text" name="FirstName" value="">
-    <input type="submit" value="Submit"><br><br>
 
-    Market<br>
-    <div style="position: absolute; top: 100px; left: 150px;">Available</div>
-    <div style="position: absolute; top: 100px; left: 270px;">Price</div>
-    Company A<input id="availableA" type="text" name="buyA"><br>
-    Company B<input id="availableB" type="text" name="buyB"><br>
-    Company C<input id="availableC" type="text" name="buyC"><br>
+    <div style="position: absolute; top: 80px; left: 510px;font-style: italic">Market</div>
+    <div style="position: absolute; top: 125px; left: 500px;">Company A</div>
+    <div style="position: absolute; top: 145px; left: 500px;">Company B</div>
+    <div style="position: absolute; top: 165px; left: 500px;">Company C</div>
+    <br><br>
+    <div style="position: absolute; top: 100px; left: 625px;">Available</div>
+    <div style="position: absolute; top: 100px; left: 730px;">Price</div>
+
+    <br style="border: black">
+    <input id="availableA" type="text" name="buyB"><br>
+    <input id="availableB" type="text" name="buyB"><br>
+    <input id="availableC" type="text" name="b
+    uyC"><br>
     <input id="priceA" type="text" name="sellA"><br>
     <input id="priceB" type="text" name="sellB"><br>
     <input id="priceC" type="text" name="sellC"><br>
 
-    <div style="position: absolute; top: 200px; left: 165px;">Buy</div>
-    <div style="position: absolute; top: 200px; left: 270px;">Sell</div>
+    <div style="position: absolute; top: 210px; left: 600px; font-style: italic">My Stocks</div>
+    <table style="width:20%; position: absolute; top: 240px; left: 500px">
+        <tr>
+            <th> </th>
+            <th> Company 1 </th>
+            <th> Company 2 </th>
+            <th> Company 3 </th>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td id="quantityA"> </td>
+            <td id="quantityB"> </td>
+            <td id="quantityC"> </td>
+        </tr>
+        <tr>
+            <td>Balance</td>
+            <td id="playerMoney"> </td>
+        </tr>
+    </table>
 
-    Company A<input id="buyA" type="text" name="buyA"><br>
-    Company B<input id="buyB" type="text" name="buyB"><br>
-    Company C<input id="buyC" type="text" name="buyC"><br>
+
+    <div style="position: absolute; top: 330px; left: 625px;">Buy</div>
+    <div style="position: absolute; top: 330px; left: 730px;">Sell</div>
+    <button type="button" onclick="alert('Saved')" style="margin-top: 200px; margin-left: 670px">Submit</button>
+    <div style="position: absolute; top: 350px; left: 500px;">Company A</div>
+    <div style="position: absolute; top: 370px; left: 500px;">Company B</div>
+    <div style="position: absolute; top: 390px; left: 500px;">Company C</div>
+
+    <input id="buyA" type="text" name="buyA"><br>
+    <input id="buyB" type="text" name="buyB"><br>
+    <input id="buyC" type="text" name="buyC"><br>
     <input id="sellA" type="text" name="sellA"><br>
     <input id="sellB" type="text" name="sellB"><br>
     <input id="sellC" type="text" name="sellC"><br>
-</form>
+
+<script type="text/javascript" src="Gamelogic/Company.js" ></script>
 </body>
-<script src="/static/game.js"></script>
 </html>
