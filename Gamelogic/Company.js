@@ -1,4 +1,3 @@
-
     var pricee=0;
     var shares=[];
     var companyA=[];
@@ -48,7 +47,6 @@
         shares=sharess;
     }
 
-
 //organiza las acciones, no se por que pero quedan 20 espacios vacios, total este es el mvp
     function shareSort(sharesToSort){
         for(var j=0; j<20; j++){
@@ -64,12 +62,6 @@
         console.log(companyB);
         console.log(companyC);*/
     }
-
-
-
-
-
-
 
 //counts occupied spaces, used to see how many shares a company or user has available
     function countOccupiedSpaces(array){
@@ -97,8 +89,6 @@
         return enoughmoney;
     }
 
-
-
     //returns true if the share array is empty
     function isEmpty(array){
        var isempty=false;
@@ -107,7 +97,6 @@
        }
        return isempty;
     }
-
 
     function RaisePrices(player1,player2, company, shareIdentifier){
         for(var i=0; i<player1.shares.length;i++){
@@ -123,6 +112,24 @@
 
         for(var k=0; k<company.length; k++){
                 company[k].price+=1;
+        }
+
+    }
+
+    function LowerPrices(player1,player2, company, shareIdentifier){
+        for(var i=0; i<player1.shares.length;i++){
+            if(player1.shares[i].owner===1) {
+                player1.shares[i].price -= 1;
+            }
+        }
+        for(var j=0; j<player2.shares.length;j++){
+            if(player2.shares[j].owner===shareIdentifier ) {
+                player2.shares[j].price -= 1;
+            }
+        }
+
+        for(var k=0; k<company.length; k++){
+            company[k].price-=1;
         }
 
     }
@@ -147,46 +154,114 @@
 
     }
 
-    function getShareOwner(shareArray){
-        var owner=0;
-        owner=ShareArray[0].owner
+    function transfer1(shareArray){
+        var parallel=[];
+
+        for(var j=0; j<shareArray.length; j++){
+            if(shareArray[j].owner===1){
+                parallel.push(shareArray[j]);
+                shareArray[j]=0;
+            }
+
+        }
+        for( var i = shareArray.length-1; i--;){
+            if ( shareArray[i] === 0) shareArray.splice(i, 1);
+        }
+        /*var filtered =shareArray.filter(function (el) {
+            return el !== 0;
+        });
+        shareArray=filtered*/
+
+        return parallel;
     }
 
     function sell1(offer, player, companyA) {
         if(countOccupiedSpaces(player.shares)<offer){
             console.log("you don't have any shares available");
         }else if(countOccupiedSpaces(player.shares) > offer){
+            var parallel= transfer1(player.shares);
             var money=0;
-            var parallel=[];
-            //V+E
-            do{
-                for(var j=0; j<player.shares.length; j++){
-                    if(player.shares[j].owner===1){
-
-                        money+=player.shares[j].price;
-                        parallel.push(player.shares[j]);
-                        player.shares[j]=0;
-                        companyA.push(parallel.pop());
-                        --offer;
-                    }
-
-                }
-            }while(offer!==0);
-
-            var filtered = player.shares.filter(function (el) {
-                return el !== 0;
-            });
-            player.shares=filtered;
+            for(var i=0; i<offer;i++){
+                money=parallel[i].price;
+                companyA.push(parallel.pop());
+            }
+            LowerPrices(player1, player2, companyA, 1)
 
         }
-        
     }
 
-    createShares(1);
-    shareSort(shares);
-    buy(10, player2,companyA);
-    buy(3,player2,companyB);
-    console.log(player2);
-    sell1(3,player2,companyA);
+    function sell2(offer, player, companyB) {
+        if(countOccupiedSpaces(player.shares)<offer){
+            console.log("you don't have any shares available");
+        }else if(countOccupiedSpaces(player.shares) > offer){
+            var parallel= transfer2(player.shares);
+            var money=0;
+            for(var i=0; i<offer;i++){
+                money=parallel[i].price;
+                companyB.push(parallel.pop());
+            }
+            LowerPrices(player1, player2, companyB, 1)
+        }
+    }
+
+    function sell3(offer, player, companyC) {
+        if(countOccupiedSpaces(player.shares)<offer){
+            console.log("you don't have any shares available");
+        }else if(countOccupiedSpaces(player.shares) > offer){
+            var parallel= transfer3(player.shares);
+            var money=0;
+            for(var i=0; i<offer;i++){
+                money=parallel[i].price;
+                companyC.push(parallel.pop());
+            }
+            LowerPrices(player1, player2, companyA, 1)
+        }
+
+    }
+
+    function transfer2(shareArray){
+        var parallel=[];
+
+        for(var j=0; j<shareArray.length; j++){
+            if(shareArray[j].owner===2){
+                parallel.push(shareArray[j]);
+                shareArray[j]=0;
+            }
+
+        }
+        for( var i = shareArray.length-1; i--;){
+            if ( shareArray[i] === 0) shareArray.splice(i, 1);
+        }
+        /*var filtered =shareArray.filter(function (el) {
+            return el !== 0;
+        });
+        shareArray=filtered*/
+
+        return parallel;
+    }
+
+    function transfer3(shareArray){
+        var parallel=[];
+
+        for(var j=0; j<shareArray.length; j++){
+            if(shareArray[j].owner===3){
+                parallel.push(shareArray[j]);
+                shareArray[j]=0;
+            }
+
+        }
+        for( var i = shareArray.length-1; i--;){
+            if ( shareArray[i] === 0) shareArray.splice(i, 1);
+        }
+        /*var filtered =shareArray.filter(function (el) {
+            return el !== 0;
+        });
+        shareArray=filtered*/
+
+        return parallel;
+    }
+
+
+
 
 
