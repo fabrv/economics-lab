@@ -6,12 +6,14 @@
     var player1={
         AvailableMoney: 10000,
         utilities:0,
-        shares:[]
+        shares:[],
+        SMoney:10000
     };
     var player2={
         AvailableMoney:10000,
         utilities:0,
-        shares:[]
+        shares:[],
+        SMoney:10000
     };
     var bid=10;
 
@@ -186,7 +188,7 @@
                 companyA.push(parallel.pop());
             }
             LowerPrices(player1, player2, companyA, 1)
-
+            player.AvailableMoney+=money;
         }
     }
 
@@ -201,6 +203,7 @@
                 companyB.push(parallel.pop());
             }
             LowerPrices(player1, player2, companyB, 1)
+            player.AvailableMoney+=money;
         }
     }
 
@@ -215,6 +218,7 @@
                 companyC.push(parallel.pop());
             }
             LowerPrices(player1, player2, companyA, 1)
+            player.AvailableMoney+=money;
         }
 
     }
@@ -259,6 +263,39 @@
         shareArray=filtered*/
 
         return parallel;
+    }
+
+    function Winner(player1, player2){
+        var Wincriteria1= player1.AvailableMoney-player1.SMoney;
+        var Wincriteria2= player2.AvailableMoney-player2.SMoney;
+
+        if(Wincriteria1>Wincriteria2){
+            console.log('Player 1 Wins');
+        }else if(Wincriteria2>Wincriteria1){
+            console.log('Player 2 Wins');
+        }
+
+    }
+
+    //shareABC are used as counters
+    function showHowMany(player,shareA,shareB,shareC){
+
+        for(i=0; i<player.shares.length; i++){
+            if(player.shares[i].owner===1){
+                shareA+=1;
+            }else if(player.shares[i].owner===2){
+                shareB+=1;
+            }else if(player.shares[i].owner===3){
+                shareC+=1;
+            }
+        }
+        console.log(shareA);
+        console.log(shareB);
+        console.log(shareC);
+    }
+
+    function GetSharePrice(shareArray){
+        return shareArray[0].price;
     }
 
 
