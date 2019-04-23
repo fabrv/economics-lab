@@ -21,29 +21,15 @@ server.listen(5000, function() {
   console.log('Starting server on port 5000');
 });
 
-/**
- * Server side input handler, modifies the state of the players and the
- * game based on the input it receives. Everything here runs asynchronously.
- */
-io.on('connection', (socket) => {
-  socket.on('player-join', () => {
-    game.addNewPlayer(socket);
+var players = {};
+io.on('connection', function(socket) {
+  socket.on('new player', function() {
+    players[socket.id] = {
+      x: 300,
+      y: 300
+    };
   });
 
-  socket.on('player-action', (data) => {
-    game.updatePlayerOnInput(socket.id, data);
-  });
-
-  socket.on('disconnect', () => {
-    game.removePlayer(socket.id);
-  })
-});
-
-/**
- * Server side game loop. This runs at 60 frames per second.
- */
-setInterval(() => {
-  game.update();
-  game.sendState();
-}, 1000 / FPS);
-
+setInterval(function() {
+  io.sockets.emit('state', players);
+}, 1000 / 60)});
