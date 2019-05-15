@@ -1,105 +1,148 @@
-input {
+h1{
+    font-family: "Courier New";
+    text-align: center;
+}
+body{
+    font-family: "Courier New";
+    width: 90%;
+    height: 90%;
+    border-width: thick;
+    box-sizing: border-box;
+    border-color: black;
+    border-style: inset;
+    text-align: left;
+}
+#availableA {
     position: absolute;
     top: 125px;
-    left: 145px;
+    left: 625px;
     text-align: center;
     width: 5%;
-    background-color: #3CBC8D;
+    background-color: #66ff33;
     color: white;
+    font-family: "Courier New";
 
 }
 #availableB {
     position: absolute;
     top: 145px;
-    left: 145px;
+    left: 625px;
     text-align: center;
     width: 5%;
-
-
+    background-color: #66ff33;
+    color: white;
 }
 #availableC {
     position: absolute;
     top: 165px;
-    left: 145px;
+    left: 625px;
     text-align: center;
     width: 5%;
+    background-color: #66ff33;
+    color: white;
+    font-family: "Courier New";
+
 
 }
 
 #priceA {
     position: absolute;
     top: 125px;
-    left: 250px;
+    left: 730px;
     text-align: center;
     width: 5%;
+    background-color: #66ff33;
+    color: white;
+    font-family: "Courier New";
 
 }
 
 #priceB {
     position: absolute;
     top: 145px;
-    left: 250px;
+    left: 730px;
     text-align: center;
     width: 5%;
+    background-color: #66ff33;
+    color: white;
+    font-family: "Courier New";
 
 }
 
 #priceC {
     position: absolute;
     top: 165px;
-    left: 250px;
+    left: 730px;
     text-align: center;
     width: 5%;
+    background-color: #66ff33;
+    color: white;
+    font-family: "Courier New";
 
 }
 
 #buyA {
     position: absolute;
-    top: 225px;
-    left: 145px;
+    top: 350px;
+    left: 625px;
     text-align: center;
     width: 5%;
+    font-family: "Courier New";
+    background-color: #ff6600;
+    color: white;
 
 }
 #buyB {
     position: absolute;
-    top: 245px;
-    left: 145px;
+    top: 370px;
+    left: 625px;
     text-align: center;
     width: 5%;
-
+    font-family: "Courier New";
+    background-color: #ff6600;
+    color: white;
 }
 #buyC {
     position: absolute;
-    top: 265px;
-    left: 145px;
+    top: 390px;
+    left: 625px;
     text-align: center;
     width: 5%;
-
+    font-family: "Courier New";
+    background-color: #ff6600;
+    color: white;
 }
 
 #sellA {
     position: absolute;
-    top: 225px;
-    left: 250px;
+    top: 350px;
+    left: 730px;
     text-align: center;
     width: 5%;
-
+    font-family: "Courier New";
+    background-color: #ff6600;
+    color: white;
 }
 
 #sellB {
     position: absolute;
-    top: 245px;
-    left: 250px;
+    top: 370px;
+    left: 730px;
     text-align: center;
     width: 5%;
+    font-family: "Courier New";
+    background-color: #ff6600;
+    color: white;
 
 }
 
 #sellC {
     position: absolute;
-    top: 265px;
-    left: 250px;
+    top: 390px;
+    left: 730px;
     text-align: center;
     width: 5%;
+    font-family: "Courier New";
+    background-color: #ff6600;
+    color: white;
 }

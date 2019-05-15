@@ -8,28 +8,55 @@ var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
 
-app.set('port', 5000);
-app.use('/static', express.static(__dirname + '/static'));
+const game = require('./Gamelogic/Company');
 
-// Routing
-app.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname, 'index.html'));
-});
+app.set('port', 5000);
+app.use('/', express.static(__dirname + '/'));
 
 // Starts the server.
-server.listen(5000, function() {
-  console.log('Starting server on port 5000');
+server.listen(5000, () => {
+  console.log('Starting server on port 5000 \n');
 });
 
-var players = {};
-io.on('connection', function(socket) {
-  socket.on('new player', function() {
-    players[socket.id] = {
-      x: 300,
-      y: 300
-    };
-  });
+var players = [];
 
-setInterval(function() {
-  io.sockets.emit('state', players);
-}, 1000 / 60)});
+io.on('connect', (socket) => {
+  if (players.length < 2) {
+    addNewPlayer(socket.id);
+  } else {
+    console.log(`Lobby está lleno, ${socket.id} se quedó afuera.`);
+    socket.emit('fullLobby', 'Juego está lleno.');
+  }
+
+  socket.on('disconnect', () => {
+    removePlayer(socket.id);
+  })
+});
+
+function addNewPlayer (id) {
+  console.log(`Nuevo jugador: ${id}`);
+  players.push({
+    id: id,
+    x: 300,
+    y: 300
+  });
+}
+
+function removePlayer (id) {
+  console.log(`Jugador desconectado, ${id}`);
+  const playerLeaving = players.find( (player) => {return player.id === id});
+  const playerLeavingIndex = players.indexOf(playerLeaving);
+
+  if (playerLeavingIndex > -1) {
+    players.splice(playerLeavingIndex, 1);
+  }
+}
+
+function updateInformation () {
+  data = [
+    {
+      'available': game.default.companyA
+    }
+  ]
+  io.emit('dataDisplay', data)
+}

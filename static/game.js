@@ -1,8 +1,23 @@
-var socket = io();
-let socket = io.connect('http://localhost:<portNumber>');
-console.log(socket.id); // undefined
+const portNumber = 5000
+let socket = io.connect(`http://localhost:${portNumber}`);
+
 socket.on('connect', () => {
-    console.log(socket.id); // an alphanumeric id...
+    console.log(`player id: ${socket.id}`); // an alphanumeric id...
+
+    socket.on('fullLobby', (data) => {
+        alert(data);
+    })
+
+    socket.on('dataDisplay', (data) => {
+        /*
+        const names = ['A', 'B', 'C']
+        for (let i = 0; i < names.length; i++) {
+            document.getElementById(`available${names[i]}`).value = data[i].available;
+            document.getElementById(`price${names[i]}`).value = data[i].price;
+        }
+        */
+        
+    })
 });
 
-document.getElementById("available").innerHTML =1;
+// document.getElementById("available").innerHTML =1;

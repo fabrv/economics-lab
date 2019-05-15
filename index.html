@@ -1,161 +1,12 @@
-<html xmlns:A="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
+    <meta charset="UTF-8">
     <title>Multiplayer Game</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        h1{
-            font-family: "Courier New";
-            text-align: center;
-        }
-        body{
-            font-family: "Courier New";
-            width: 90%;
-            height: 90%;
-            border-width: thick;
-            box-sizing: border-box;
-            border-color: black;
-            border-style: inset;
-            text-align: left;
-        }
-        #availableA {
-            position: absolute;
-            top: 125px;
-            left: 625px;
-            text-align: center;
-            width: 5%;
-            background-color: #66ff33;
-            color: white;
-            font-family: "Courier New";
-
-        }
-        #availableB {
-            position: absolute;
-            top: 145px;
-            left: 625px;
-            text-align: center;
-            width: 5%;
-            background-color: #66ff33;
-            color: white;
-        }
-        #availableC {
-            position: absolute;
-            top: 165px;
-            left: 625px;
-            text-align: center;
-            width: 5%;
-            background-color: #66ff33;
-            color: white;
-            font-family: "Courier New";
-
-
-        }
-
-        #priceA {
-            position: absolute;
-            top: 125px;
-            left: 730px;
-            text-align: center;
-            width: 5%;
-            background-color: #66ff33;
-            color: white;
-            font-family: "Courier New";
-
-        }
-
-        #priceB {
-            position: absolute;
-            top: 145px;
-            left: 730px;
-            text-align: center;
-            width: 5%;
-            background-color: #66ff33;
-            color: white;
-            font-family: "Courier New";
-
-        }
-
-        #priceC {
-            position: absolute;
-            top: 165px;
-            left: 730px;
-            text-align: center;
-            width: 5%;
-            background-color: #66ff33;
-            color: white;
-            font-family: "Courier New";
-
-        }
-
-        #buyA {
-            position: absolute;
-            top: 350px;
-            left: 625px;
-            text-align: center;
-            width: 5%;
-            font-family: "Courier New";
-            background-color: #ff6600;
-            color: white;
-
-        }
-        #buyB {
-            position: absolute;
-            top: 370px;
-            left: 625px;
-            text-align: center;
-            width: 5%;
-            font-family: "Courier New";
-            background-color: #ff6600;
-            color: white;
-        }
-        #buyC {
-            position: absolute;
-            top: 390px;
-            left: 625px;
-            text-align: center;
-            width: 5%;
-            font-family: "Courier New";
-            background-color: #ff6600;
-            color: white;
-        }
-
-        #sellA {
-            position: absolute;
-            top: 350px;
-            left: 730px;
-            text-align: center;
-            width: 5%;
-            font-family: "Courier New";
-            background-color: #ff6600;
-            color: white;
-        }
-
-        #sellB {
-            position: absolute;
-            top: 370px;
-            left: 730px;
-            text-align: center;
-            width: 5%;
-            font-family: "Courier New";
-            background-color: #ff6600;
-            color: white;
-
-        }
-
-        #sellC {
-            position: absolute;
-            top: 390px;
-            left: 730px;
-            text-align: center;
-            width: 5%;
-            font-family: "Courier New";
-            background-color: #ff6600;
-            color: white;
-        }
-    </style>
-    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <h1>OFFER AND DEMAND</h1>
+    <h1>SUPPLY AND DEMAND</h1>
 
     <div style="position: absolute; top: 80px; left: 510px;font-style: italic">Market</div>
     <div style="position: absolute; top: 125px; left: 500px;">Company A</div>
@@ -168,8 +19,7 @@
     <br style="border: black">
     <input id="availableA" type="text" name="buyB"><br>
     <input id="availableB" type="text" name="buyB"><br>
-    <input id="availableC" type="text" name="b
-    uyC"><br>
+    <input id="availableC" type="text" name="buyC"><br>
     <input id="priceA" type="text" name="sellA"><br>
     <input id="priceB" type="text" name="sellB"><br>
     <input id="priceC" type="text" name="sellC"><br>
@@ -202,13 +52,15 @@
     <div style="position: absolute; top: 370px; left: 500px;">Company B</div>
     <div style="position: absolute; top: 390px; left: 500px;">Company C</div>
 
-    <input id="buyA" type="text" name="buyA"><br>
-    <input id="buyB" type="text" name="buyB"><br>
-    <input id="buyC" type="text" name="buyC"><br>
-    <input id="sellA" type="text" name="sellA"><br>
-    <input id="sellB" type="text" name="sellB"><br>
-    <input id="sellC" type="text" name="sellC"><br>
+    <input id="buyA" type="number" name="buyA"><br>
+    <input id="buyB" type="number" name="buyB"><br>
+    <input id="buyC" type="number" name="buyC"><br>
+    <input id="sellA" type="number" name="sellA"><br>
+    <input id="sellB" type="number" name="sellB"><br>
+    <input id="sellC" type="number" name="sellC"><br>
 
-<script type="text/javascript" src="Gamelogic/Company.js" ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="static/game.js"></script>
+    <!--<script type="text/javascript" src="Gamelogic/Company.js" ></script>-->
 </body>
 </html>
