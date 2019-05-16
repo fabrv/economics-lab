@@ -18,15 +18,19 @@ server.listen(5000, () => {
   console.log('Starting server on port 5000 \n');
 });
 
-var players = [];
-
 io.on('connect', (socket) => {
-  if (players.length < 2) {
+  if (game.default.players.length < 2) {
     addNewPlayer(socket.id);
   } else {
     console.log(`Lobby está lleno, ${socket.id} se quedó afuera.`);
     socket.emit('fullLobby', 'Juego está lleno.');
   }
+
+  console.log(game.default.companies)
+  
+  io.emit('updateInfo', {
+    'companies': game.default.companies
+  })
 
   socket.on('disconnect', () => {
     removePlayer(socket.id);
@@ -35,21 +39,12 @@ io.on('connect', (socket) => {
 
 function addNewPlayer (id) {
   console.log(`Nuevo jugador: ${id}`);
-  players.push({
-    id: id,
-    x: 300,
-    y: 300
-  });
+  game.default.addNewPlayer(id)
 }
 
 function removePlayer (id) {
   console.log(`Jugador desconectado, ${id}`);
-  const playerLeaving = players.find( (player) => {return player.id === id});
-  const playerLeavingIndex = players.indexOf(playerLeaving);
-
-  if (playerLeavingIndex > -1) {
-    players.splice(playerLeavingIndex, 1);
-  }
+  game.default.removePlayer(id)
 }
 
 function updateInformation () {

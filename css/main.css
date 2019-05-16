@@ -12,6 +12,12 @@ body{
     border-style: inset;
     text-align: left;
 }
+
+input[type=text], input[type=number]{
+    font-size: large !important;
+    font-weight: bolder !important;
+}
+
 #availableA {
     position: absolute;
     top: 125px;
@@ -19,7 +25,6 @@ body{
     text-align: center;
     width: 5%;
     background-color: #66ff33;
-    color: white;
     font-family: "Courier New";
 
 }
@@ -29,8 +34,8 @@ body{
     left: 625px;
     text-align: center;
     width: 5%;
+    font-family: "Courier New";
     background-color: #66ff33;
-    color: white;
 }
 #availableC {
     position: absolute;
@@ -39,10 +44,7 @@ body{
     text-align: center;
     width: 5%;
     background-color: #66ff33;
-    color: white;
     font-family: "Courier New";
-
-
 }
 
 #priceA {
@@ -52,9 +54,7 @@ body{
     text-align: center;
     width: 5%;
     background-color: #66ff33;
-    color: white;
     font-family: "Courier New";
-
 }
 
 #priceB {
@@ -64,9 +64,7 @@ body{
     text-align: center;
     width: 5%;
     background-color: #66ff33;
-    color: white;
     font-family: "Courier New";
-
 }
 
 #priceC {
@@ -76,9 +74,7 @@ body{
     text-align: center;
     width: 5%;
     background-color: #66ff33;
-    color: white;
     font-family: "Courier New";
-
 }
 
 #buyA {
@@ -89,9 +85,8 @@ body{
     width: 5%;
     font-family: "Courier New";
     background-color: #ff6600;
-    color: white;
-
 }
+
 #buyB {
     position: absolute;
     top: 370px;
@@ -100,8 +95,8 @@ body{
     width: 5%;
     font-family: "Courier New";
     background-color: #ff6600;
-    color: white;
 }
+
 #buyC {
     position: absolute;
     top: 390px;
@@ -110,7 +105,6 @@ body{
     width: 5%;
     font-family: "Courier New";
     background-color: #ff6600;
-    color: white;
 }
 
 #sellA {
@@ -121,7 +115,6 @@ body{
     width: 5%;
     font-family: "Courier New";
     background-color: #ff6600;
-    color: white;
 }
 
 #sellB {
@@ -132,8 +125,6 @@ body{
     width: 5%;
     font-family: "Courier New";
     background-color: #ff6600;
-    color: white;
-
 }
 
 #sellC {
@@ -144,5 +135,4 @@ body{
     width: 5%;
     font-family: "Courier New";
     background-color: #ff6600;
-    color: white;
 }
