@@ -1,10 +1,4 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-class Share {
-  constructor (quantity, company) {
-    this.quantity = quantity,
-    this.company = company
-  }
-}
 
 class Player {
   constructor(money, utilities, shares, id){
@@ -14,16 +8,20 @@ class Player {
     this.id = id;
   }
 
-  buyShares(shares) {
+  buyShares(shares, total) {
     this.shares[0] += shares[0];
     this.shares[1] += shares[1];
     this.shares[2] += shares[2];
+
+    this.money -= total;
   }
 
-  sellShares(shares) {
+  sellShares(shares, sells) {
     this.shares[0] -= shares[0];
     this.shares[1] -= shares[1];
     this.shares[2] -= shares[2];
+
+    this.money += sells;
   }
 }
 
@@ -60,31 +58,33 @@ class Game {
     }
   }
 
-  buyShares(shares, id) {
-    this.companies[0].shares -= shares[0];
-    this.companies[1].shares -= shares[1];
-    this.companies[2].shares -= shares[2];
+  buyShares(shares, id, total) {
+    for (let i = 0; i < 3; i++){
+      this.companies[i].shares -= shares[i];
+      this.companies[i].price += Math.ceil(shares[i] / 2)
+    }
 
     const player = this.players.find( (player) => {return player.id === id});
     const playerIndex = this.players.indexOf(player);
 
     if (playerIndex > -1) {
-      this.players[playerIndex].buyShares(shares)
+      this.players[playerIndex].buyShares(shares, total)
     }
 
     return this.players[playerIndex]
   }
 
-  sellShares(shares, id) {
-    this.companies[0].shares += shares[0];
-    this.companies[1].shares += shares[1];
-    this.companies[2].shares += shares[2];
+  sellShares(shares, id, sells) {
+    for (let i = 0; i < 3; i++){
+      this.companies[i].shares += shares[i];
+      this.companies[i].price -= Math.ceil(shares[i] / 2)
+    }
 
     const player = this.players.find( (player) => {return player.id === id});
     const playerIndex = this.players.indexOf(player);
 
     if (playerIndex > -1) {
-      this.players[playerIndex].sellShares(shares)
+      this.players[playerIndex].sellShares(shares, sells)
     }
 
     return this.players[playerIndex]

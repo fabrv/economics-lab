@@ -24,7 +24,6 @@ socket.on('connect', () => {
   });
 
   socket.on('playerInfo', (data) => {
-    console.log(data)
     document.getElementById(`playerMoney`).innerHTML = `$${data.player.money}.00`;
     money = data.player.money
     const names = ['A', 'B', 'C']
@@ -35,7 +34,6 @@ socket.on('connect', () => {
   });
 
   socket.on('play', (data) => {
-    console.log(data.start == true && data.wait == false)
     if (data.start == true && data.wait == false){
       document.getElementById('status').innerHTML = 'Enviar cantidad a vender o comprar'
       document.getElementById('submit-btn').style.display = 'initial'
@@ -78,7 +76,9 @@ function submit() {
     socket.emit('submit', {
       'sell': stocksToSell,
       'buy': stocksToBuy,
-      'id': id
+      'id': id,
+      'total': total,
+      'sellTot': sellCalcTotal()
     })
   }
 }
@@ -90,7 +90,6 @@ function buyCalcTotal(){
     parseInt(document.getElementById('buyC').value)
   ]
  
-  console.log(stocksToBuy)
   let total = 0
   for (let i = 0; i < 3; i++){
     total += stocksToBuy[i] * companies[i].price
@@ -102,5 +101,20 @@ function buyCalcTotal(){
     document.getElementById('total-spent').innerHTML = 'Buy bigger than available money, lower stock amount'
   }
   
+  return total
+}
+
+function sellCalcTotal(){
+  const stocksToSell = [
+    parseInt(document.getElementById('sellA').value),
+    parseInt(document.getElementById('sellB').value),
+    parseInt(document.getElementById('sellC').value),
+  ]
+
+  let total = 0
+  for (let i = 0; i < 3; i++){
+    total += stocksToSell[i] * companies[i].price
+  }
+
   return total
 }

@@ -39,15 +39,13 @@ io.on('connect', (socket) => {
   })
 
   socket.on('submit', (data) => {
-    playerMoves = (playerMoves + 1) % 2
-    console.log(data);
-    let player = game.default.sellShares(data.sell, data.id);
-    player = game.default.buyShares(data.buy, data.id);
+    playerMoves = (playerMoves + 1) % 2    
+    let player = game.default.sellShares(data.sell, data.id, data.sellTot);
+    player = game.default.buyShares(data.buy, data.id, data.total);
 
     socket.emit('playerInfo', {'player': player});
     updateInfo();
-
-    console.log(playerMoves)
+    
     if (playerMoves === 1) {
       socket.emit('play', {'start': false, 'wait': true})
     }else {
