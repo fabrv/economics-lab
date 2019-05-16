@@ -6,6 +6,16 @@ class Share {
     this.identifier = identifier
   }
 }
+
+class Player {
+  constructor(availableMoney, utilities, shares, smoney){
+    this.availableMoney = availableMoney
+    this.utilities = utilities
+    this.shares = shares
+    this.smoney = smoney
+  }
+}
+
 class Company {
   constructor () {
     this.price = 0;
@@ -13,18 +23,8 @@ class Company {
     this.companyA = [];
     this.companyB = [];
     this.companyC = [];
-    this.player1 = {
-      AvailableMoney: 10000,
-      utilities:0,
-      shares:[],
-      SMoney:10000
-    };
-    this.player2 = {
-      AvailableMoney:10000,
-      utilities:0,
-      shares:[],
-      SMoney:10000
-    };
+    this.player1 = new Player(10000, 0, [], 10000);
+    this.player2 = new Player(10000, 0, [], 10000);
     this.bid = 10;
   }
 
@@ -286,4 +286,5 @@ class Company {
     return shareArray[0].price;
   }
 }
-exports.default = new Company();
+const _default = new Company();
+export { _default as default };
