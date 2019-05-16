@@ -72,7 +72,7 @@ function submit() {
     alert('Sell of more stock than owned, lower stock sell amount.')
   }
 
-  if (legalSale && (total < money)){
+  if (legalSale && (total <= money)){
     socket.emit('submit', {
       'sell': stocksToSell,
       'buy': stocksToBuy,
