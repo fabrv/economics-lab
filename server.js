@@ -9,6 +9,7 @@ var server = http.Server(app);
 var io = socketIO(server);
 
 const game = require('./Gamelogic/Company');
+let playerMoves = 0
 
 app.set('port', 5000);
 app.use('/', express.static(__dirname + '/'));
@@ -20,38 +21,48 @@ server.listen(5000, () => {
 
 io.on('connect', (socket) => {
   if (game.default.players.length < 2) {
-    addNewPlayer(socket.id);
+    console.log(`Nuevo jugador, ${socket.id}`);
+    socket.emit('playerInfo', {'player': game.default.addNewPlayer(socket.id)});
+
+    if (game.default.players.length === 2) {
+      io.emit('play', {'start': true, 'wait': false})
+    }
   } else {
     console.log(`Lobby está lleno, ${socket.id} se quedó afuera.`);
     socket.emit('fullLobby', 'Juego está lleno.');
   }
-
-  console.log(game.default.companies)
   
-  io.emit('updateInfo', {
-    'companies': game.default.companies
-  })
+  updateInfo();
 
   socket.on('disconnect', () => {
     removePlayer(socket.id);
   })
+
+  socket.on('submit', (data) => {
+    playerMoves = (playerMoves + 1) % 2
+    console.log(data);
+    let player = game.default.sellShares(data.sell, data.id);
+    player = game.default.buyShares(data.buy, data.id);
+
+    socket.emit('playerInfo', {'player': player});
+    updateInfo();
+
+    console.log(playerMoves)
+    if (playerMoves === 1) {
+      socket.emit('play', {'start': false, 'wait': true})
+    }else {
+      io.emit('play', {'start': true, 'wait': false})
+    }
+  })
 });
 
-function addNewPlayer (id) {
-  console.log(`Nuevo jugador: ${id}`);
-  game.default.addNewPlayer(id)
+function updateInfo(){
+  io.emit('updateInfo', {
+    'companies': game.default.companies
+  });
 }
 
 function removePlayer (id) {
   console.log(`Jugador desconectado, ${id}`);
   game.default.removePlayer(id)
-}
-
-function updateInformation () {
-  data = [
-    {
-      'available': game.default.companyA
-    }
-  ]
-  io.emit('dataDisplay', data)
 }
